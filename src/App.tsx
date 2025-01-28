@@ -1,18 +1,12 @@
-
-import { ModeToggle } from './components/mode-toggle'
-import { Button } from './components/ui/button'
+import Navbar from "./components/layout/Navbar";
 
 function App() {
-  
-
   return (
     <>
-      <Button>Click me</Button>
-      <div>
-                <ModeToggle></ModeToggle>
-            </div>
+      <Navbar></Navbar>
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;

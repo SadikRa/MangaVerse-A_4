@@ -9,12 +9,17 @@ import { store } from "./redux/store.ts";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-     <Provider store={store}>
-     <App />
-     </Provider>
+      <Provider store={store}>
+        <div
+          style={{
+            maxWidth: "1400px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          <App />
+        </div>
+      </Provider>
     </ThemeProvider>
   </StrictMode>
 );
-
-
-
