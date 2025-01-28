@@ -52,6 +52,7 @@ export default function Navbar() {
           </Link>
         </div>
 
+
         {/* Right side */}
         <div className="flex items-center gap-4">
           <ModeToggle />
