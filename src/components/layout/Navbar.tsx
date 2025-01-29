@@ -2,6 +2,7 @@ import { Home, BookOpen, User, Search, Link, Menu, X } from "lucide-react";
 import { ModeToggle } from "../mode-toggle";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,10 +18,16 @@ export default function Navbar() {
             onClick={toggleMenu}
             className="lg:hidden text-orange-600 hover:text-orange-700 focus:outline-none"
           >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {menuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-orange-600">mangaVerse</span>
+            <span className="text-xl font-bold text-orange-600">
+              mangaVerse
+            </span>
           </Link>
         </div>
 
@@ -52,13 +59,14 @@ export default function Navbar() {
           </Link>
         </div>
 
-
         {/* Right side */}
         <div className="flex items-center gap-4">
           <ModeToggle />
-          <Button className="bg-orange-600 hover:bg-orange-700 text-white">
-            Get Started
-          </Button>
+          <NavLink to="/login">
+            <Button className="bg-orange-600 hover:bg-orange-700 text-white">
+              Login
+            </Button>
+          </NavLink>
         </div>
       </div>
 
