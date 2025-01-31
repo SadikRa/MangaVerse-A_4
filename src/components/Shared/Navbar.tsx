@@ -3,7 +3,7 @@ import { ModeToggle } from "../mode-toggle";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../../assets/logo.png"; 
+import Logo from "../../assets/logo.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,12 +27,14 @@ export default function Navbar() {
           </button>
 
           <NavLink to="/" className="flex items-center gap-2">
-            <img 
-              src={Logo} 
-              alt="MangaVerse Logo" 
-              className="h-10 w-auto max-w-[150px] object-contain" 
+            <img
+              src={Logo}
+              alt="MangaVerse Logo"
+              className="h-10 w-auto max-w-[150px] object-contain"
             />
-            <span className="text-xl font-bold text-orange-600">mangaVerse</span>
+            <span className="font-bold text-orange-600 text-xl sm:block hidden">
+              mangaVerse
+            </span>
           </NavLink>
         </div>
 

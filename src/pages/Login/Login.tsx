@@ -1,28 +1,55 @@
 import { Link } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-
-type LoginFormInputs = {
-  email: string;
-  password: string;
-};
+import { useAppDispatch } from "../../redux/hooks";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
+import { verifyToken } from "../../components/utils/verifyToken";
+import { setUser, TUser } from "../../redux/features/auth/authSlice";
+import { toast } from "sonner";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>();
+  } = useForm({
+    defaultValues: {
+      email: "sadika@gmail.com",
+      password: "sadik12",
+    },
+  });
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    console.log("Login Data:", data);
-    // Add your login logic here
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [login] = useLoginMutation();
+
+  const onSubmit = async (data: FieldValues) => {
+    const toastId = toast.loading("Logging in");
+
+    try {
+      // Construct the userInfo object correctly
+      const userInfo = {
+        email: data.email, // Use "email" instead of "id"
+        password: data.password,
+      };
+
+      // Call the login mutation
+      const res = await login(userInfo).unwrap();
+
+      // Verify the token and dispatch the user
+      const user = verifyToken(res.data.accessToken) as TUser;
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+
+      toast.success("Logged in successfully", { id: toastId });
+    } catch (error) {
+      toast.error("Failed to login", { id: toastId });
+      console.error("Login error:", error);
+    }
   };
-
   return (
-    <div className="flex min-h-screen">
+    <div className="mt-8 flex min-h-screen">
       {/* Left Side - Image */}
       <div
         className="hidden md:flex w-1/2 bg-cover bg-center relative overflow-hidden"
@@ -52,7 +79,10 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Email */}
             <div>
-              <Label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <Label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Email
               </Label>
               <Input
@@ -69,13 +99,18 @@ const Login = () => {
                 className="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-white"
               />
               {errors.email && (
-                <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
             {/* Password */}
             <div>
-              <Label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <Label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Password
               </Label>
               <Input
@@ -92,7 +127,9 @@ const Login = () => {
                 className="mt-1 bg-gray-100 dark:bg-gray-700 dark:text-white"
               />
               {errors.password && (
-                <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 

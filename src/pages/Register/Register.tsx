@@ -17,7 +17,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="mt-8 flex min-h-screen">
       {/* Left Side - Enhanced Image */}
       <div
         className="hidden md:flex w-1/2 bg-cover bg-center relative overflow-hidden"
