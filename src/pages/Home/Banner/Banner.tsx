@@ -4,7 +4,7 @@ import { Button } from "../../../components/ui/button";
 const Banner = () => {
   return (
     <div
-      className="relative w-full h-[450px] md:h-[550px] lg:h-[750px] bg-cover bg-center flex items-center overflow-hidden"
+      className="relative mb-12 w-full h-[450px] md:h-[550px] lg:h-[750px] bg-cover bg-center flex items-center overflow-hidden"
       style={{
         backgroundImage: `url(https://i.ibb.co.com/xqWbZBc9/banner.webp)`,
       }}

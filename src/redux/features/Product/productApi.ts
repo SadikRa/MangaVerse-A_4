@@ -1,12 +1,12 @@
 import { baseApi } from '../../api/baseApi';
 
-const authApi = baseApi.injectEndpoints({
+const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (query) => ({
+      query: (queryParams: { limit?: number; page?: number }) => ({
         url: "/products",
         method: "GET",
-        params: query,
+        params: queryParams, // Pass query parameters like limit and page
       }),
       transformResponse: (baseQueryReturnValue: any) => {
         if (baseQueryReturnValue?.data) {
@@ -20,4 +20,4 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetProductsQuery } = authApi;
+export const { useGetProductsQuery } = productApi;

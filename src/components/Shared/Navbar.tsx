@@ -49,10 +49,10 @@ export default function Navbar() {
         {/* Center Links (Hidden on small devices) */}
         <div className="hidden lg:flex items-center gap-6">
           <NavLink
-            to="/"
+            to="/product-details"
             className="text-sm font-medium transition-colors hover:text-orange-600"
           >
-            <Home className="h-5 w-5" />
+            product
           </NavLink>
           <NavLink
             to="/manga"
