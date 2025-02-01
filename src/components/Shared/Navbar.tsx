@@ -4,11 +4,19 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout, selectCurrentUser } from "../../redux/features/auth/authSlice";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectCurrentUser);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
@@ -69,11 +77,21 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <ModeToggle />
-          <NavLink to="/login">
-            <Button className="bg-orange-600 hover:bg-orange-700 text-white">
-              Login
+
+          {user ? (
+            <Button
+              onClick={handleLogout}
+              className="bg-orange-600 hover:bg-orange-700 text-white transition-transform transform hover:scale-105"
+            >
+              LogOut
             </Button>
-          </NavLink>
+          ) : (
+            <NavLink to="/login">
+              <Button className="bg-orange-600 hover:bg-orange-700 text-white transition-transform transform hover:scale-105">
+                Login
+              </Button>
+            </NavLink>
+          )}
         </div>
       </div>
 

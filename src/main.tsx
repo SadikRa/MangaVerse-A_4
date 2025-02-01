@@ -8,6 +8,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes.tsx";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -20,9 +21,11 @@ createRoot(document.getElementById("root")!).render(
             marginRight: "auto",
           }}
         >
+          <ParallaxProvider >
           <PersistGate loading={null} persistor={persistor}>
             <RouterProvider router={router} />
           </PersistGate>
+          </ParallaxProvider>
           <Toaster />
         </div>
       </Provider>
