@@ -3,6 +3,11 @@ import { Navigate } from "react-router-dom";
 import { verifyToken } from "../components/utils/verifyToken";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { logout, useCurrentToken } from "../redux/features/auth/authSlice";
+import { JwtPayload } from "jwt-decode";
+
+interface IDecodedToken extends JwtPayload {
+  role: string;
+}
 
 type TProtectedRoute = {
   children: ReactNode;
@@ -12,10 +17,10 @@ type TProtectedRoute = {
 const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
   const token = useAppSelector(useCurrentToken);
 
-  let user;
+  let user: IDecodedToken | null = null;
 
   if (token) {
-    user = verifyToken(token);
+    user = verifyToken(token) as IDecodedToken;
   }
 
   const dispatch = useAppDispatch();
@@ -24,6 +29,7 @@ const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
     dispatch(logout());
     return <Navigate to="/login" replace={true} />;
   }
+
   if (!token) {
     return <Navigate to="/login" replace={true} />;
   }

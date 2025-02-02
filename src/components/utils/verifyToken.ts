@@ -1,5 +1,10 @@
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
-export const verifyToken = (token: string) => {
-  return jwtDecode(token);
+interface IDecodedToken {
+  role: string;
+  [key: string]: any; 
+}
+
+export const verifyToken = (token: string): IDecodedToken => {
+  return jwtDecode(token) as IDecodedToken;
 };

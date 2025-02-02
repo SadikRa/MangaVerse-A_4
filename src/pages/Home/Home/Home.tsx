@@ -36,7 +36,7 @@ const Home = () => {
         </div>
         <div className="text-center my-8">
           <button
-            onClick={() => navigate("/product-details")} // Redirect to the All Products page
+            onClick={() => navigate("/product")} // Redirect to the All Products page
             className="mt-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded"
           >
             View All Products

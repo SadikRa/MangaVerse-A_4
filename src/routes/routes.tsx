@@ -7,6 +7,8 @@ import DashBoardLayout from "../components/layout/DashBoardLayout";
 import About from "../pages/About/About";
 import Product from "../pages/Product/Product";
 import ProductDetails from "../pages/Product/ProductDetails";
+import CreateAProduct from "../pages/Product/CreateAProduct";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -14,20 +16,20 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/product',
-        element: <Product />
+        path: "/product",
+        element: <Product />,
       },
       {
-        path: '/product-details',
-        element: <ProductDetails />
+        path: "/products/:id",
+        element: <ProductDetails />,
       },
       {
-        path: '/about',
-        element: <About />
+        path: "/about",
+        element: <About />,
       },
 
       {
@@ -41,9 +43,15 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashBoard',
-    element: <DashBoardLayout></DashBoardLayout>
-  }
+    path: "/dashBoard",
+    element: <DashBoardLayout></DashBoardLayout>,
+    children: [
+      {
+        path: "/dashBoard/products",
+        element: <CreateAProduct></CreateAProduct>,
+      },
+    ],
+  },
 ]);
 
 export default router;

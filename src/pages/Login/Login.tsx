@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
@@ -11,6 +11,7 @@ import { toast } from "sonner";
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -43,6 +44,7 @@ const Login = () => {
       dispatch(setUser({ user: user, token: res.data.accessToken }));
 
       toast.success("Logged in successfully", { id: toastId });
+      navigate("/");
     } catch (error) {
       toast.error("Failed to login", { id: toastId });
       console.error("Login error:", error);

@@ -21,6 +21,7 @@ export type TMangaGenres =
   | 'Drama';
 
 export type Product = {
+  _id: string;
   id?: string;
   title: string;
   author: string;
