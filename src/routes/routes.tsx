@@ -3,7 +3,10 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import MainLayout from "../components/layout/MainLayout";
 import Home from "../pages/Home/Home/Home";
-import Product from "../components/Product/Product";
+import DashBoardLayout from "../components/layout/DashBoardLayout";
+import About from "../pages/About/About";
+import Product from "../pages/Product/Product";
+import ProductDetails from "../pages/Product/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -15,9 +18,18 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/product-details',
+        path: '/product',
         element: <Product />
       },
+      {
+        path: '/product-details',
+        element: <ProductDetails />
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+
       {
         path: "/login",
         element: <Login />,
@@ -28,6 +40,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashBoard',
+    element: <DashBoardLayout></DashBoardLayout>
+  }
 ]);
 
 export default router;

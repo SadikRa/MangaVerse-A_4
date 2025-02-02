@@ -1,12 +1,11 @@
+import ProductCard from "../../components/Shared/ProductCard/ProductCard";
 import { useGetProductsQuery } from "../../redux/features/Product/productApi";
 import { Product as TProduct } from "../../types/TProduct";
-import ProductCard from "./ProductCard/ProductCard";
 
 const Product = () => {
   const { data: response, isLoading, error } = useGetProductsQuery({});
 
-  console.log("API Response:", response); 
-  const products = response?.data; 
+  const products = response?.data;
 
   if (isLoading) return <p>Loading products...</p>;
   if (error) return <p>Error fetching products!</p>;

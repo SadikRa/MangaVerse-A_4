@@ -1,4 +1,4 @@
-import { Home, BookOpen, User, Search, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { ModeToggle } from "../mode-toggle";
 import { Button } from "../ui/button";
 import { useState } from "react";
@@ -49,28 +49,28 @@ export default function Navbar() {
         {/* Center Links (Hidden on small devices) */}
         <div className="hidden lg:flex items-center gap-6">
           <NavLink
-            to="/product-details"
+            to="/"
+            className="text-sm font-medium transition-colors hover:text-orange-600"
+          >
+            home
+          </NavLink>
+          <NavLink
+            to="/product"
             className="text-sm font-medium transition-colors hover:text-orange-600"
           >
             product
           </NavLink>
           <NavLink
-            to="/manga"
+            to="/about"
             className="text-sm font-medium transition-colors hover:text-orange-600"
           >
-            <BookOpen className="h-5 w-5" />
+            about
           </NavLink>
           <NavLink
-            to="/search"
+            to="/dashBoard"
             className="text-sm font-medium transition-colors hover:text-orange-600"
           >
-            <Search className="h-5 w-5" />
-          </NavLink>
-          <NavLink
-            to="/profile"
-            className="text-sm font-medium transition-colors hover:text-orange-600"
-          >
-            <User className="h-5 w-5" />
+            dashBoard
           </NavLink>
         </div>
 
@@ -101,35 +101,27 @@ export default function Navbar() {
           <div className="flex flex-col items-start px-4 py-2 gap-2">
             <NavLink
               to="/"
-              className="text-sm font-medium transition-colors hover:text-orange-600 flex items-center gap-2"
-              onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium transition-colors hover:text-orange-600"
             >
-              <Home className="h-5 w-5" />
-              Home
+              home
             </NavLink>
             <NavLink
-              to="/manga"
-              className="text-sm font-medium transition-colors hover:text-orange-600 flex items-center gap-2"
-              onClick={() => setMenuOpen(false)}
+              to="/product"
+              className="text-sm font-medium transition-colors hover:text-orange-600"
             >
-              <BookOpen className="h-5 w-5" />
-              Manga
+              product
             </NavLink>
             <NavLink
-              to="/search"
-              className="text-sm font-medium transition-colors hover:text-orange-600 flex items-center gap-2"
-              onClick={() => setMenuOpen(false)}
+              to="/about Us"
+              className="text-sm font-medium transition-colors hover:text-orange-600"
             >
-              <Search className="h-5 w-5" />
-              Search
+              about
             </NavLink>
             <NavLink
-              to="/profile"
-              className="text-sm font-medium transition-colors hover:text-orange-600 flex items-center gap-2"
-              onClick={() => setMenuOpen(false)}
+              to="/dashBoard"
+              className="text-sm font-medium transition-colors hover:text-orange-600"
             >
-              <User className="h-5 w-5" />
-              Profile
+              dashBoard
             </NavLink>
           </div>
         </div>

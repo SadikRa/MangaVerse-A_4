@@ -2,14 +2,18 @@ import { useNavigate } from "react-router-dom";
 
 import Banner from "../Banner/Banner";
 import { useGetProductsQuery } from "../../../redux/features/Product/productApi";
-import ProductCard from "../../../components/Product/ProductCard/ProductCard";
-import { Product as TProduct } from '../../../types/TProduct.ts'
+import ProductCard from "../../../components/Shared/ProductCard/ProductCard.tsx";
+import { Product as TProduct } from "../../../types/TProduct.ts";
 import Upcoming from "../Upcoming/Upcoming.tsx";
 const Home = () => {
   const navigate = useNavigate();
 
   // Fetch up to 6 featured products
-  const { data: response, isLoading, error } = useGetProductsQuery({ limit: 6 });
+  const {
+    data: response,
+    isLoading,
+    error,
+  } = useGetProductsQuery({ limit: 6 });
 
   const featuredProducts = response?.data;
 
