@@ -24,7 +24,6 @@ const CreateAProduct = () => {
   const [createProduct, { isLoading }] = useAddAProductMutation();
 
   const onSubmit: SubmitHandler<Product> = async (data) => {
-    // Convert price and quantity to numbers
     const productData = {
       ...data,
       price: Number(data.price),
@@ -48,7 +47,6 @@ const CreateAProduct = () => {
         Add New Manga
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Title */}
         <div>
           <Label htmlFor="title">Title</Label>
           <Input
@@ -57,10 +55,11 @@ const CreateAProduct = () => {
             placeholder="Enter manga title"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.title && <p className="text-sm text-red-500 mt-1">{errors.title.message}</p>}
+          {errors.title && (
+            <p className="text-sm text-red-500 mt-1">{errors.title.message}</p>
+          )}
         </div>
 
-        {/* Author */}
         <div>
           <Label htmlFor="author">Author</Label>
           <Input
@@ -69,10 +68,11 @@ const CreateAProduct = () => {
             placeholder="Enter author name"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.author && <p className="text-sm text-red-500 mt-1">{errors.author.message}</p>}
+          {errors.author && (
+            <p className="text-sm text-red-500 mt-1">{errors.author.message}</p>
+          )}
         </div>
 
-        {/* Image URL */}
         <div>
           <Label htmlFor="image">Image URL</Label>
           <Input
@@ -81,10 +81,11 @@ const CreateAProduct = () => {
             placeholder="Enter image URL"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.image && <p className="text-sm text-red-500 mt-1">{errors.image.message}</p>}
+          {errors.image && (
+            <p className="text-sm text-red-500 mt-1">{errors.image.message}</p>
+          )}
         </div>
 
-        {/* Price */}
         <div>
           <Label htmlFor="price">Price</Label>
           <Input
@@ -97,14 +98,17 @@ const CreateAProduct = () => {
             placeholder="Enter price"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.price && <p className="text-sm text-red-500 mt-1">{errors.price.message}</p>}
+          {errors.price && (
+            <p className="text-sm text-red-500 mt-1">{errors.price.message}</p>
+          )}
         </div>
 
-        {/* Category */}
         <div>
           <Label htmlFor="category">Category</Label>
           <Select
-            onValueChange={(value) => setValue("category", value as Product["category"])}
+            onValueChange={(value) =>
+              setValue("category", value as Product["category"])
+            }
           >
             <SelectTrigger className="dark:bg-gray-800 dark:text-white">
               <SelectValue placeholder="Select a category" />
@@ -138,22 +142,30 @@ const CreateAProduct = () => {
               ))}
             </SelectContent>
           </Select>
-          {errors.category && <p className="text-sm text-red-500 mt-1">{errors.category.message}</p>}
+          {errors.category && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.category.message}
+            </p>
+          )}
         </div>
 
-        {/* Description */}
         <div>
           <Label htmlFor="description">Description</Label>
           <Input
             id="description"
-            {...register("description", { required: "Description is required" })}
+            {...register("description", {
+              required: "Description is required",
+            })}
             placeholder="Enter manga description"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.description && <p className="text-sm text-red-500 mt-1">{errors.description.message}</p>}
+          {errors.description && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.description.message}
+            </p>
+          )}
         </div>
 
-        {/* Quantity */}
         <div>
           <Label htmlFor="quantity">Quantity</Label>
           <Input
@@ -166,13 +178,18 @@ const CreateAProduct = () => {
             placeholder="Enter quantity"
             className="dark:bg-gray-800 dark:text-white"
           />
-          {errors.quantity && <p className="text-sm text-red-500 mt-1">{errors.quantity.message}</p>}
+          {errors.quantity && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.quantity.message}
+            </p>
+          )}
         </div>
 
-        {/* In Stock */}
         <div>
           <Label htmlFor="inStock">In Stock</Label>
-          <Select onValueChange={(value) => setValue("inStock", value === "true")}>
+          <Select
+            onValueChange={(value) => setValue("inStock", value === "true")}
+          >
             <SelectTrigger className="dark:bg-gray-800 dark:text-white">
               <SelectValue placeholder="Select stock status" />
             </SelectTrigger>
@@ -181,10 +198,13 @@ const CreateAProduct = () => {
               <SelectItem value="false">Out of Stock</SelectItem>
             </SelectContent>
           </Select>
-          {errors.inStock && <p className="text-sm text-red-500 mt-1">{errors.inStock.message}</p>}
+          {errors.inStock && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.inStock.message}
+            </p>
+          )}
         </div>
 
-        {/* Submit Button */}
         <Button
           type="submit"
           className="w-full bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 transition-all"

@@ -9,6 +9,7 @@ import Product from "../pages/Product/Product";
 import ProductDetails from "../pages/Product/ProductDetails";
 import CreateAProduct from "../pages/Product/CreateAProduct";
 import ProtectedRoute from "./ProtectedRoute";
+import AdminProducts from "../pages/Product/AdminProducts";
 
 const router = createBrowserRouter([
   {
@@ -47,9 +48,14 @@ const router = createBrowserRouter([
     element: <DashBoardLayout></DashBoardLayout>,
     children: [
       {
+        path: "/dashBoard/",
+        element: <AdminProducts></AdminProducts>,
+      },
+      {
         path: "/dashBoard/products",
         element: <CreateAProduct></CreateAProduct>,
       },
+      
     ],
   },
 ]);
