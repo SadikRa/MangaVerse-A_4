@@ -8,8 +8,8 @@ import About from "../pages/About/About";
 import Product from "../pages/Product/Product";
 import ProductDetails from "../pages/Product/ProductDetails";
 import CreateAProduct from "../pages/Product/CreateAProduct";
-import ProtectedRoute from "./ProtectedRoute";
 import AdminProducts from "../pages/Product/AdminProducts";
+import UpdateProductForm from "../pages/Product/UpdateProductForm";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/dashBoard/",
         element: <AdminProducts></AdminProducts>,
+      },
+      {
+        path: "dashBoard/products/update/:id",
+        element: <UpdateProductForm></UpdateProductForm>,
       },
       {
         path: "/dashBoard/products",
